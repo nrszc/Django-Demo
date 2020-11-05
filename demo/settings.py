@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'django_filters',
+    'django_py_zipkin',
 ]
 
 # 跨域增加忽略
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_py_zipkin.middleware.ZipkinMiddleware',
 ]
 
 ROOT_URLCONF = 'demo.urls'
@@ -148,3 +150,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# 服务名称，必须配置
+ZIPKIN_SERVICE_NAME = 'test-service'
+# 是否启用跟踪，默认False
+ZIPKIN_TRACING_ENABLED = True
+# zipkin地址
+ZIPKIN_HTTP_ENDPOINT = 'http://112.74.37.26:9411/api/v1/spans'
